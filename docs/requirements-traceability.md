@@ -23,3 +23,17 @@ Cột "Đã kiểm chứng" chỉ ghi những gì **đã thực sự chạy** �
 | KT2. Lên Google Play | – | – | **Nhóm tự thực hiện** (ngoài phạm vi repo) |
 | KT3. Báo cáo | `docs/report/final-report.md` | – | Cần chuyển sang mẫu Khoa + ảnh chụp |
 | KT4. Video demo | `docs/report/demo-script.md` | – | **Nhóm tự quay** |
+
+## Yêu cầu báo cáo (Technical Requirements mục 4) → tài liệu
+
+| Đề yêu cầu | Tài liệu | Trạng thái |
+|---|---|---|
+| Nguyên lý, mẫu, thực hành phát triển phần mềm | `docs/architecture.md` mục 1 | Có |
+| Class diagrams | `docs/uml.md` mục 2–4 (model/domain, data/ViewModel, UI) | Có, khớp mã nguồn |
+| Entity-relationship database diagram | `docs/database.md` (ER + bảng quan hệ + mô tả collection) | Có |
+| Use cases | `docs/uml.md` mục 1 | Có |
+| Solution diagrams cho các thành phần, thiết kế hạ tầng | `docs/architecture.md` mục 2 | Có |
+| Implementation: cấu trúc mã và công nghệ | `README.md`, `docs/architecture.md` mục 0, `docs/report/final-report.md` mục 3 | Có |
+| User Interface: trình bày mọi chức năng | `docs/report/final-report.md` mục 4 | **Thiếu ảnh chụp màn hình thật** |
+| Video demo | `docs/report/demo-script.md` | **Nhóm tự quay** |
+| Báo cáo theo mẫu Khoa, mục lục, tài liệu tham khảo | `docs/report/final-report.md` mục 6 | Có nội dung; **cần chuyển sang mẫu Khoa** |

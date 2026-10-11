@@ -34,7 +34,12 @@ Facade (`TransactionFlow`), tách logic nghiệp vụ thuần Java để kiểm 
 | Chatbot | Trả lời kèm liên kết tới chức năng |
 
 ### 2.3 Use case, sơ đồ lớp, ER, tuần tự
-Các sơ đồ nằm ở **`docs/uml.md`** (Mermaid): use case, class (model/domain và data/viewmodel/ui), sequence chuyển tiền, state eKYC, điều hướng.
+Các sơ đồ nằm ở **`docs/uml.md`** (Mermaid):
+- Use case (khách hàng, nhân viên; include OTP, extend xác minh khuôn mặt khi ≥ 10 triệu).
+- Class diagram 1 – model, enum và luật nghiệp vụ `domain/`.
+- Class diagram 2 – Repository, LiveData Firestore và ViewModel (kế thừa + phụ thuộc).
+- Class diagram 3 – Activity, Fragment, dialog và luồng giao dịch `TransactionFlow`.
+- Sequence chuyển tiền có OTP/khuôn mặt, state eKYC, sơ đồ điều hướng.
 Khi chuyển sang mẫu Khoa, xuất các sơ đồ thành ảnh (ví dụ qua mermaid.live) và chèn vào báo cáo.
 
 ### 2.4 Thiết kế cơ sở dữ liệu
@@ -106,3 +111,17 @@ Chèn ảnh chụp màn hình thật `[CẦN ĐIỀN]` cho từng mục sau:
 ## 5. Kết luận, giới hạn và hướng phát triển
 Giới hạn: `docs/limitations.md`. Hướng phát triển: chuyển OTP, xác nhận cổng thanh toán, hạn mức ngày, tạo tài khoản đăng nhập sang Cloud Functions (gói Blaze);
 tích hợp so khớp khuôn mặt (mô hình nhúng khuôn mặt chạy trên thiết bị hoặc dịch vụ eKYC); kết nối nhà cung cấp hóa đơn/NAPAS thật; Stripe; kiểm thử giao diện (Espresso).
+
+## 6. Tài liệu tham khảo
+
+1. Android Developers – Guide to app architecture (MVVM, ViewModel, LiveData). https://developer.android.com/topic/architecture
+2. Android Developers – Navigation component; View binding. https://developer.android.com/guide/navigation · https://developer.android.com/topic/libraries/view-binding
+3. Firebase Documentation – Authentication (Email/Password). https://firebase.google.com/docs/auth/android/password-auth
+4. Firebase Documentation – Cloud Firestore: data model, transactions & batched writes, Security Rules. https://firebase.google.com/docs/firestore
+5. Google ML Kit – Face detection (Android). https://developers.google.com/ml-kit/vision/face-detection/android
+6. osmdroid – OpenStreetMap tools for Android. https://github.com/osmdroid/osmdroid
+7. Project OSRM – HTTP API (route service). https://project-osrm.org/docs/v5.24.0/api/
+8. VNPAY – Tài liệu tích hợp cổng thanh toán (sandbox). https://sandbox.vnpayment.vn/apis/
+9. Google AI for Developers – Gemini API. https://ai.google.dev/gemini-api/docs
+10. Material Design 3. https://m3.material.io
+11. RFC 4231 – Test vectors for HMAC-SHA224/256/384/512. https://www.rfc-editor.org/rfc/rfc4231
