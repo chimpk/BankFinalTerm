@@ -4,7 +4,7 @@
 Ứng dụng Android (Java, MVVM) với hai giao diện: **khách hàng** và **nhân viên ngân hàng**; dữ liệu trên **Firebase** (Authentication + Cloud Firestore).
 
 > **Trạng thái:** 34 unit test domain/utils đã chạy đạt bằng JUnit; build Android đầy đủ (Gradle + AndroidX/Firebase) **chưa được xác nhận**
-> trên máy thật — CI GitHub Actions và `docker/android/Dockerfile` sẽ build và báo lỗi nếu có. Chi tiết: [docs/setup/testing.md](docs/setup/testing.md).
+> trên máy thật — CI GitHub Actions sẽ build và báo lỗi nếu có. Chi tiết: [docs/setup/testing.md](docs/setup/testing.md).
 
 ## Tính năng theo đề bài
 
@@ -22,7 +22,7 @@
 
 Java 17 · Android `minSdk 26`, `targetSdk/compileSdk 36` (Google Play yêu cầu API 36 cho ứng dụng mới từ 31/08/2026) ·
 AGP 8.10.1 · Gradle 8.11.1 · MVVM + ViewBinding + Navigation Component · Firebase Auth + Firestore (gói **Spark**, không Cloud Functions/Storage) ·
-osmdroid · ML Kit Face Detection · Material 3 · Docker (Firebase Emulator, build APK) · GitHub Actions CI.
+osmdroid · ML Kit Face Detection · Material 3 · GitHub Actions CI.
 Lý do chọn từng công nghệ: [docs/architecture.md](docs/architecture.md).
 
 ## Cấu trúc dự án
@@ -41,17 +41,13 @@ Lý do chọn từng công nghệ: [docs/architecture.md](docs/architecture.md).
 │       │   ├── ui/              auth, customer, officer, map, chat, profile, common
 │       │   └── utils/
 │       ├── main/res/            layout, navigation, menu, values, drawable
-│       ├── debug/res/           cấu hình mạng cho Firebase Emulator (chỉ bản debug)
 │       └── test/                Unit test JVM
 ├── gradle/libs.versions.toml    Phiên bản thư viện tập trung
-├── firebase.json                Cấu hình Firestore + Emulator
+├── firebase.json                Cấu hình Firebase CLI (rules, indexes)
 ├── firestore.rules              Quy tắc bảo mật (lớp thực thi cuối cùng khi không có server)
 ├── firestore.indexes.json
-├── scripts/                     Nạp dữ liệu demo (Admin SDK, chạy được với Emulator)
+├── scripts/                     Nạp dữ liệu demo (Firebase Admin SDK)
 ├── sample-data/                 Mô tả dữ liệu demo
-├── docker/                      android/ (build APK + test), firebase/ (Local Emulator)
-├── docker-compose.yml           Firebase Emulator + seed
-├── Makefile                     Lối tắt lệnh Docker/test
 ├── tools/                       Script kiểm tra tĩnh tài nguyên/import
 ├── .github/workflows/ci.yml     CI: unit test + build APK + kiểm tra tĩnh
 └── docs/                        Phân tích thiết kế, UML, ER, bảo mật, báo cáo, hướng dẫn (mục lục: docs/README.md)
@@ -59,29 +55,18 @@ Lý do chọn từng công nghệ: [docs/architecture.md](docs/architecture.md).
 
 ## Chạy dự án
 
-Yêu cầu: Android Studio (JDK 17), Android SDK 36. Hoặc chỉ cần Docker.
+Yêu cầu: Android Studio (JDK 17), Android SDK 36.
 
-**Cách A – Firebase Emulator bằng Docker (nhanh, không cần Firebase project):**
-
-```bash
-docker compose up -d --build firebase    # Emulator UI: http://localhost:4000
-docker compose run --rm seed             # nạp dữ liệu demo
-```
-
-Thêm `firebase.emulatorHost=10.0.2.2` vào `local.properties` → Sync Gradle → chạy cấu hình `app` trên Android Emulator.
-Chi tiết: [docs/setup/docker.md](docs/setup/docker.md).
-
-**Cách B – Firebase thật:** làm theo [docs/setup/firebase.md](docs/setup/firebase.md) (đặt `app/google-services.json`, triển khai rules, chạy seed).
-
-(Tùy chọn) VNPay/Gemini: [docs/setup/external-services.md](docs/setup/external-services.md). Mẫu cấu hình: `local.properties.example`.
+1. Cấu hình Firebase theo [docs/setup/firebase.md](docs/setup/firebase.md): đặt `app/google-services.json`, triển khai `firestore.rules`, chạy script seed.
+2. (Tùy chọn) VNPay/Gemini: [docs/setup/external-services.md](docs/setup/external-services.md). Mẫu cấu hình: `local.properties.example`.
+3. Mở bằng Android Studio → **Sync Gradle** → chạy cấu hình `app`.
 
 Đăng nhập thử: `officer1/officer123`, `customer1/customer123`, `customer2/customer123` (xem [sample-data](sample-data/README.md)).
 
 ## Build và test
 
 ```bash
-./gradlew testDebugUnitTest assembleDebug                        # trên máy có Android SDK
-docker build -f docker/android/Dockerfile --output .build-outputs .  # trong Docker → .build-outputs/apk/
+./gradlew testDebugUnitTest assembleDebug   # APK: app/build/outputs/apk/debug/
 ```
 
 CI GitHub Actions chạy các bước trên ở mỗi push/PR và đính kèm APK debug.

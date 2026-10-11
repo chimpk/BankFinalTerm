@@ -18,7 +18,6 @@ Hướng dẫn cài đặt:
 
 | Tài liệu | Nội dung |
 |---|---|
-| [setup/docker.md](setup/docker.md) | Firebase Emulator + build APK bằng Docker |
 | [setup/firebase.md](setup/firebase.md) | Tạo Firebase project thật, rules, seed |
 | [setup/external-services.md](setup/external-services.md) | VNPay sandbox, Gemini, bản đồ |
 | [setup/testing.md](setup/testing.md) | Unit test, CI, danh sách test thủ công |

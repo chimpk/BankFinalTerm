@@ -1,6 +1,6 @@
 # Dữ liệu mẫu
 
-Dữ liệu demo được nạp bằng `scripts/seed-demo-data.js` (xem `docs/setup/firebase.md` hoặc `docs/setup/docker.md`). Bảng tóm tắt:
+Dữ liệu demo được nạp bằng `scripts/seed-demo-data.js` (xem `docs/setup/firebase.md`). Bảng tóm tắt:
 
 | Tên đăng nhập | Mật khẩu | Vai trò | Tài khoản |
 |---|---|---|---|

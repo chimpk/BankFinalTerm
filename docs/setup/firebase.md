@@ -1,6 +1,4 @@
-# Thiết lập Firebase thật (gói Spark – miễn phí)
-
-> Chỉ cần chạy thử/demo trên máy? Dùng Firebase Emulator bằng Docker, không cần project: [docker.md](docker.md).
+# Thiết lập Firebase (gói Spark – miễn phí)
 
 Làm lần lượt:
 

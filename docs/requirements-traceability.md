@@ -19,7 +19,7 @@ Cột "Đã kiểm chứng" chỉ ghi những gì **đã thực sự chạy** �
 | 5. Tiện ích | `UtilityPayFragment`, `utility_catalog.json` | Parser + asset đạt test | Chạy thật; danh mục là mẫu |
 | 6. Bản đồ + đường đi bộ | `BranchMapFragment`, `MapViewModel`, `RoutingClient` | **Parser OSRM + Haversine đạt test** | OSRM thật, osmdroid, định vị |
 | 7. Chatbot | `ChatIntentEngine`, `ChatViewModel` | **Nhận diện ý định đạt test** | Giao diện; Gemini (chưa có khóa) |
-| KT1. Lưu CSDL | Firestore (+ Firebase Emulator qua Docker) | – | Chưa chạy với project thật |
+| KT1. Lưu CSDL | Firestore | – | Chạy thật trên project Firebase của nhóm |
 | KT2. Lên Google Play | – | – | **Nhóm tự thực hiện** (ngoài phạm vi repo) |
 | KT3. Báo cáo | `docs/report/final-report.md` | – | Cần chuyển sang mẫu Khoa + ảnh chụp |
 | KT4. Video demo | `docs/report/demo-script.md` | – | **Nhóm tự quay** |

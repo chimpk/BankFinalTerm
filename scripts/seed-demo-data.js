@@ -1,11 +1,7 @@
 /**
  * Nạp dữ liệu demo cho TDT Bank. CHẠY MỘT LẦN trên Firebase project của nhóm.
  *
- * Chạy với Firebase Local Emulator (không cần project thật, xem docs/setup/docker.md):
- *   docker compose up -d firebase && docker compose run --rm seed
- *   (script tự nhận FIRESTORE_EMULATOR_HOST / FIREBASE_AUTH_EMULATOR_HOST.)
- *
- * Chạy với Firebase project thật:
+ * Chuẩn bị:
  *   1. Firebase Console > Project settings > Service accounts > "Generate new private key".
  *      Lưu file thành scripts/serviceAccountKey.json (file này đã được .gitignore - KHÔNG commit).
  *   2. cd scripts && npm install && npm run seed
@@ -17,13 +13,8 @@
 const admin = require('firebase-admin');
 const path = require('path');
 
-if (process.env.FIRESTORE_EMULATOR_HOST) {
-  // Emulator không kiểm tra thông tin xác thực; project "demo-*" khớp FirebaseClient.EMULATOR_PROJECT_ID.
-  admin.initializeApp({ projectId: process.env.GCLOUD_PROJECT || 'demo-tdtbank' });
-} else {
-  const key = require(path.join(__dirname, 'serviceAccountKey.json'));
-  admin.initializeApp({ credential: admin.credential.cert(key) });
-}
+const key = require(path.join(__dirname, 'serviceAccountKey.json'));
+admin.initializeApp({ credential: admin.credential.cert(key) });
 const db = admin.firestore();
 const auth = admin.auth();
 const { FieldValue } = admin.firestore;

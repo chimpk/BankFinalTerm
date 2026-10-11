@@ -6,7 +6,6 @@
 |---|---|
 | Unit test JVM (38 test: `TransactionRulesTest` 10, `OtpManagerTest` 5, `CalculatorsTest` 8, `ChatIntentEngineTest` 2, `VnPayUrlBuilderTest` 4, `ValidationUtilsTest` 5, `RemoteParsersTest` 4) | `./gradlew testDebugUnitTest` |
 | Build APK debug | `./gradlew assembleDebug` → `app/build/outputs/apk/debug/` |
-| Cả hai trong Docker (không cần Android Studio) | `docker build -f docker/android/Dockerfile --output .build-outputs .` |
 | Kiểm tra tĩnh tài nguyên/ViewBinding/import + cú pháp seed | `python3 tools/check_resources.py`, `python3 tools/check_imports.py`, `node --check scripts/seed-demo-data.js` |
 | CI | GitHub Actions (`.github/workflows/ci.yml`) chạy tất cả mục trên ở mỗi push/PR và đính kèm APK + kết quả test |
 
@@ -18,9 +17,9 @@
 | 4 test `RemoteParsersTest` (cần `org.json`) | Đạt ở bản trước; chạy lại bằng Gradle/CI |
 | `tools/check_resources.py`, `tools/check_imports.py` | **0 lỗi** |
 | `node --check scripts/seed-demo-data.js` | **Đạt** |
-| `./gradlew assembleDebug` với AndroidX/Firebase/Material thật | **Chưa xác nhận** – chạy CI hoặc Docker để xác nhận |
+| `./gradlew assembleDebug` với AndroidX/Firebase/Material thật | **Chưa xác nhận** – chạy Android Studio hoặc CI để xác nhận |
 | Chạy trên emulator/thiết bị; camera, ML Kit, định vị, osmdroid, OSRM | Chưa chạy |
-| `firestore.rules` với Firebase Emulator | Có sẵn môi trường (`docker compose up firebase`), chưa chạy kịch bản T19 |
+| `firestore.rules` trên Firebase thật | Chưa chạy kịch bản T19 |
 | VNPay sandbox, Gemini | Chưa có khóa |
 
 ## 3. Danh sách test thủ công cần chạy (kết quả: **CHƯA CHẠY**)
@@ -45,7 +44,7 @@
 | T16 | Bản đồ → định vị → đường đi bộ tới chi nhánh gần nhất | Hiện tuyến + km + phút (đặt vị trí emulator ở TP.HCM) |
 | T17 | Chatbot: "xem giao dịch tháng này", "thanh toán tiền điện" | Tóm tắt tháng / nút mở màn hình thanh toán |
 | T18 | Tắt mạng rồi mở app | Thông báo lỗi mạng, không crash |
-| T19 | Thử gọi Firestore trực tiếp để tự cộng tiền (Emulator) | Rules từ chối |
+| T19 | Thử ghi Firestore trực tiếp để tự cộng tiền (Rules Playground trên Console) | Rules từ chối |
 
 ## 4. Công cụ kiểm tra (không nằm trong app)
 

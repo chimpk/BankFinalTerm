@@ -11,6 +11,3 @@ vnpay.hashSecret=
 gemini.apiKey=
 gemini.model=gemini-2.0-flash
 
-## --- Firebase Local Emulator (chỉ bản debug, tùy chọn). Xem docs/setup/docker.md ---
-## 10.0.2.2 = máy host nhìn từ Android Emulator. Để trống => dùng Firebase thật (app/google-services.json).
-firebase.emulatorHost=

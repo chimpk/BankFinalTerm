@@ -5,8 +5,6 @@ import android.content.Context;
 
 import org.osmdroid.config.Configuration;
 
-import vn.edu.tdtu.tdtbank.data.firebase.FirebaseClient;
-
 import java.io.File;
 
 public class TdtBankApp extends Application {
@@ -21,7 +19,6 @@ public class TdtBankApp extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        FirebaseClient.init(this);
         // osmdroid: user-agent bắt buộc theo chính sách OSM; cache trong thư mục riêng của app (không cần quyền lưu trữ).
         Configuration cfg = Configuration.getInstance();
         cfg.setUserAgentValue(getPackageName());

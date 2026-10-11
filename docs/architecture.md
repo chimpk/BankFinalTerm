@@ -14,7 +14,7 @@
 | Bản đồ | **osmdroid** (OpenStreetMap) + **OSRM** (profile đi bộ) | Không cần API key/billing như Google Maps; OSRM trả đường đi bộ ngắn nhất |
 | Thanh toán | **VNPay sandbox** (HMAC-SHA512) + cổng SANDBOX mô phỏng | Đề cho phép VNPay *hoặc* Stripe; VNPay phổ biến ở Việt Nam |
 | Chatbot | Bộ luật ý định tiếng Việt + **Gemini** (tùy chọn) | Trả lời tức thời, có liên kết sang chức năng, không phụ thuộc mạng; Gemini cho câu hỏi tự do |
-| Build / môi trường | Gradle (Kotlin DSL, version catalog) · Docker · GitHub Actions | Phiên bản thư viện tập trung ở `gradle/libs.versions.toml`; build/test tái lập được, không phụ thuộc máy cá nhân |
+| Build / môi trường | Gradle (Kotlin DSL, version catalog) · GitHub Actions | Phiên bản thư viện tập trung ở `gradle/libs.versions.toml`; CI tự build + chạy test mỗi lần push |
 
 
 

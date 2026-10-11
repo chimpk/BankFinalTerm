@@ -9,7 +9,7 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
 }
 
-// Khóa dịch vụ ngoài đọc từ -P<tên>=... (Docker/CI) hoặc local.properties (không commit). Xem local.properties.example.
+// Khóa dịch vụ ngoài đọc từ -P<tên>=... (CI) hoặc local.properties (không commit). Xem local.properties.example.
 val localProps = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) f.inputStream().use { load(it) }
@@ -37,12 +37,7 @@ android {
     }
 
     buildTypes {
-        debug {
-            // Ví dụ 10.0.2.2 (Android Emulator → máy host chạy docker compose). Để trống => Firebase thật.
-            buildConfigField("String", "FIREBASE_EMULATOR_HOST", "\"${localProp("firebase.emulatorHost")}\"")
-        }
         release {
-            buildConfigField("String", "FIREBASE_EMULATOR_HOST", "\"\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
