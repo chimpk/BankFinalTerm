@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/customerListFragment" android:icon="@drawable/ic_people" android:title="@string/nav_customers" />
+    <item android:id="@+id/kycQueueFragment" android:icon="@drawable/ic_verified" android:title="@string/nav_kyc" />
+    <item android:id="@+id/ratesFragment" android:icon="@drawable/ic_percent" android:title="@string/nav_rates" />
+    <item android:id="@+id/profileFragment" android:icon="@drawable/ic_person" android:title="@string/nav_profile" />
+</menu>

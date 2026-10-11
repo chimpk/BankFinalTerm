@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TDT Bank</string>
+
+    <!-- Điều hướng -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_transfer">Chuyển tiền</string>
+    <string name="nav_utilities">Tiện ích</string>
+    <string name="nav_map">Chi nhánh</string>
+    <string name="nav_chat">Trợ lý</string>
+    <string name="nav_profile">Hồ sơ</string>
+    <string name="nav_customers">Khách hàng</string>
+    <string name="nav_kyc">Duyệt eKYC</string>
+    <string name="nav_rates">Lãi suất</string>
+
+    <!-- Hành động chung -->
+    <string name="action_login">Đăng nhập</string>
+    <string name="action_logout">Đăng xuất</string>
+    <string name="action_confirm">Xác nhận</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_continue">Tiếp tục</string>
+    <string name="action_close">Đóng</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_save_changes">Lưu thay đổi theo yêu cầu khách hàng</string>
+    <string name="action_send">Gửi</string>
+    <string name="action_deposit">Nạp tiền</string>
+    <string name="action_withdraw">Rút tiền</string>
+    <string name="action_transfer">Chuyển tiền</string>
+    <string name="action_pay">Thanh toán</string>
+    <string name="action_approve">Duyệt</string>
+    <string name="action_reject">Từ chối</string>
+    <string name="action_lock">Khóa tài khoản đăng nhập</string>
+    <string name="action_unlock">Mở khóa tài khoản đăng nhập</string>
+    <string name="action_open_account">Mở tài khoản mới</string>
+    <string name="action_create_customer">Tạo khách hàng</string>
+    <string name="action_create_sample_rates">Tạo bảng lãi suất mẫu</string>
+    <string name="action_change_password">Đổi mật khẩu</string>
+    <string name="action_capture_kyc">Chụp khuôn mặt eKYC</string>
+    <string name="action_capture_kyc_counter">Chụp khuôn mặt hộ khách (tại quầy)</string>
+    <string name="action_view_schedule">Xem lịch trả nợ</string>
+    <string name="action_pay_installment">Trả kỳ nợ tiếp theo</string>
+    <string name="prev_symbol">‹</string>
+    <string name="next_symbol">›</string>
+
+    <!-- Đăng nhập -->
+    <string name="login_subtitle">Ngân hàng di động</string>
+    <string name="login_no_register_note">Tài khoản do nhân viên ngân hàng cấp. Liên hệ chi nhánh để được hỗ trợ.</string>
+    <string name="hint_username">Tên đăng nhập</string>
+    <string name="hint_password">Mật khẩu</string>
+
+    <!-- Vai trò, trạng thái, loại tài khoản -->
+    <string name="role_customer">Vai trò: Khách hàng</string>
+    <string name="role_officer">Vai trò: Nhân viên ngân hàng</string>
+    <string name="status_active">Đang hoạt động</string>
+    <string name="status_closed">Đã đóng</string>
+    <string name="status_locked">Đã khóa</string>
+    <string name="type_checking">Tài khoản thanh toán</string>
+    <string name="type_saving">Tài khoản tiết kiệm</string>
+    <string name="type_mortgage">Khoản vay thế chấp</string>
+    <string name="type_mortgage_debt">Khoản vay (dư nợ)</string>
+    <string name="label_balance">Số dư</string>
+    <string name="label_debt">Dư nợ gốc còn lại</string>
+
+    <!-- Loại giao dịch -->
+    <string name="tx_deposit">Nạp tiền</string>
+    <string name="tx_withdraw">Rút tiền</string>
+    <string name="tx_transfer_internal">Chuyển khoản nội bộ</string>
+    <string name="tx_transfer_interbank">Chuyển khoản liên ngân hàng</string>
+    <string name="tx_utility">Thanh toán tiện ích</string>
+    <string name="tx_mortgage_payment">Trả nợ vay thế chấp</string>
+
+    <!-- OTP -->
+    <string name="otp_title">Xác thực OTP (2FA)</string>
+    <string name="otp_message">Nhập mã OTP gồm 6 chữ số để xác nhận giao dịch.</string>
+    <string name="otp_summary">Giao dịch %1$s %2$s</string>
+    <string name="hint_otp">Mã OTP</string>
+    <string name="otp_show_sms">Xem SMS mô phỏng</string>
+    <string name="otp_resend">Gửi lại mã</string>
+    <string name="otp_sms_text">[SMS MÔ PHỎNG – TDT Bank] Mã OTP của bạn là %1$s. Có hiệu lực 2 phút. Tuyệt đối không chia sẻ mã này.</string>
+    <string name="otp_wrong">Mã OTP không đúng. Còn %1$d lần thử.</string>
+    <string name="otp_expired">Mã OTP đã hết hạn. Hãy gửi lại mã.</string>
+    <string name="otp_locked">Nhập sai quá số lần cho phép. Hãy gửi lại mã mới.</string>
+    <string name="otp_invalid_state">Không có mã OTP hợp lệ. Hãy gửi lại mã.</string>
+
+    <!-- Biên lai -->
+    <string name="receipt_title">Giao dịch thành công</string>
+    <string name="receipt_body">%1$s\nSố tiền: %2$s\nPhí: %3$s\nMã giao dịch: %4$s</string>
+
+    <!-- Khuôn mặt / eKYC -->
+    <string name="face_title">Xác minh khuôn mặt</string>
+    <string name="face_instruction">Chụp ảnh chính diện, đủ sáng, chỉ có một khuôn mặt.</string>
+    <string name="face_instruction_smile">Chụp ảnh chính diện và MỈM CƯỜI khi chụp để chứng minh có người thật trước camera.</string>
+    <string name="face_capture">Mở camera và chụp</string>
+    <string name="face_use_photo">Dùng ảnh này</string>
+    <string name="face_preview_desc">Ảnh khuôn mặt</string>
+    <string name="face_analyzing">Đang phân tích ảnh…</string>
+    <string name="face_ok">Đạt: phát hiện một khuôn mặt.</string>
+    <string name="face_none">Không phát hiện khuôn mặt. Hãy chụp lại.</string>
+    <string name="face_multiple">Có nhiều hơn một khuôn mặt. Hãy chụp lại.</string>
+    <string name="face_not_smiling">Chưa phát hiện nụ cười. Hãy mỉm cười rõ hơn và chụp lại.</string>
+    <string name="face_detect_failed">Không phân tích được ảnh. Hãy thử lại.</string>
+    <string name="face_camera_unavailable">Không mở được camera trên thiết bị này.</string>
+
+    <!-- Hồ sơ -->
+    <string name="profile_username">Tên đăng nhập: %1$s</string>
+    <string name="profile_national_id">CCCD/CMND: %1$s</string>
+    <string name="profile_dob">Ngày sinh: %1$s</string>
+    <string name="profile_contact_title">Thông tin liên hệ</string>
+    <string name="profile_kyc_title">Xác minh danh tính (eKYC)</string>
+    <string name="profile_password_title">Đổi mật khẩu</string>
+    <string name="hint_old_password">Mật khẩu hiện tại</string>
+    <string name="hint_new_password">Mật khẩu mới</string>
+    <string name="hint_phone">Số điện thoại</string>
+    <string name="hint_email">Email liên hệ (tùy chọn)</string>
+    <string name="hint_address">Địa chỉ</string>
+    <string name="hint_full_name">Họ và tên</string>
+    <string name="hint_national_id">Số CCCD/CMND</string>
+    <string name="hint_dob">Ngày sinh (yyyy-MM-dd)</string>
+    <string name="kyc_none">Chưa xác minh</string>
+    <string name="kyc_pending">Đang chờ nhân viên duyệt</string>
+    <string name="kyc_verified">Đã xác minh</string>
+    <string name="kyc_rejected">Bị từ chối</string>
+    <string name="kyc_reject_note">Lý do từ chối: %1$s</string>
+
+    <string name="msg_profile_saved">Đã lưu thông tin liên hệ.</string>
+    <string name="msg_kyc_submitted">Đã lưu hồ sơ eKYC.</string>
+    <string name="msg_password_changed">Đổi mật khẩu thành công.</string>
+</resources>

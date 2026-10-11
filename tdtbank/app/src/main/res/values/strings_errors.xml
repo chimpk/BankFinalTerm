@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_required">Không được để trống</string>
+    <string name="err_username">Tên đăng nhập 3–32 ký tự: chữ thường, số, dấu . _ -; bắt đầu bằng chữ</string>
+    <string name="err_password_short">Mật khẩu tối thiểu 6 ký tự</string>
+    <string name="err_full_name">Họ tên 2–100 ký tự</string>
+    <string name="err_phone">Số điện thoại gồm 10 số, bắt đầu bằng 0</string>
+    <string name="err_email">Email không hợp lệ</string>
+    <string name="err_national_id">CCCD 12 số hoặc CMND 9 số</string>
+    <string name="err_dob">Ngày sinh dạng yyyy-MM-dd và đủ 18 tuổi</string>
+    <string name="err_address">Địa chỉ tối thiểu 5 ký tự</string>
+    <string name="err_customer_code">Mã khách hàng tối thiểu 4 ký tự</string>
+    <string name="err_principal">Số tiền vay tối thiểu 1.000.000 ₫</string>
+    <string name="err_rate">Lãi suất từ 0 đến 30 %/năm</string>
+    <string name="err_rate_policy">Lãi suất chính sách từ 0 đến 20 %/năm</string>
+    <string name="err_term">Kỳ hạn từ 1 đến 360 tháng</string>
+    <string name="err_no_policy">Chưa có chính sách lãi suất cho kỳ hạn này</string>
+
+    <string name="err_firebase_not_configured">Ứng dụng chưa được cấu hình Firebase. Hãy thêm app/google-services.json (xem docs/firebase-setup.md) rồi build lại.</string>
+    <string name="err_network">Không có kết nối mạng hoặc máy chủ không phản hồi. Hãy kiểm tra Internet.</string>
+    <string name="err_invalid_credentials">Tên đăng nhập hoặc mật khẩu không đúng.</string>
+    <string name="err_username_taken">Tên đăng nhập đã được sử dụng.</string>
+    <string name="err_auth_generic">Không thể xác thực. Hãy thử lại sau.</string>
+    <string name="err_permission_denied">Thao tác bị từ chối bởi quy tắc bảo mật (không đủ quyền, số dư không đủ hoặc dữ liệu không hợp lệ).</string>
+    <string name="err_already_exists">Dữ liệu đã tồn tại.</string>
+    <string name="err_not_found">Không tìm thấy dữ liệu.</string>
+    <string name="err_generic">Đã xảy ra lỗi. Hãy thử lại.</string>
+    <string name="err_profile_missing">Tài khoản chưa có hồ sơ trong hệ thống. Hãy liên hệ ngân hàng.</string>
+    <string name="err_account_locked">Tài khoản đã bị khóa. Hãy liên hệ ngân hàng.</string>
+    <string name="err_not_logged_in">Bạn chưa đăng nhập.</string>
+
+    <string name="err_amount_small">Số tiền tối thiểu là %1$s.</string>
+    <string name="err_amount_large">Số tiền tối đa mỗi giao dịch là %1$s.</string>
+    <string name="err_insufficient">Số dư không đủ (đã gồm phí nếu có).</string>
+    <string name="err_daily_limit">Vượt hạn mức giao dịch trong ngày (%1$s).</string>
+    <string name="err_same_account">Không thể chuyển tiền cho chính tài khoản nguồn.</string>
+    <string name="err_invalid_destination">Số tài khoản nhận không hợp lệ.</string>
+    <string name="err_exceeds_debt">Số tiền gốc trả vượt quá dư nợ.</string>
+    <string name="err_source_not_allowed">Tài khoản nguồn không được phép thực hiện giao dịch này.</string>
+    <string name="err_account_not_found">Không tìm thấy tài khoản nhận trong TDT Bank.</string>
+    <string name="err_no_checking">Bạn chưa có tài khoản thanh toán đang hoạt động.</string>
+    <string name="err_kyc_required">Giao dịch từ %1$s cần hoàn tất eKYC (đã được nhân viên xác minh) trước.</string>
+    <string name="err_face_failed">Xác minh khuôn mặt không đạt. Giao dịch đã bị hủy.</string>
+    <string name="err_otp_cancelled">Giao dịch đã bị hủy do chưa xác thực OTP.</string>
+    <string name="err_gateway_failed">Thanh toán qua cổng không thành công hoặc bị hủy.</string>
+    <string name="err_catalog">Không đọc được danh mục dịch vụ.</string>
+    <string name="err_location_denied">Bạn chưa cấp quyền vị trí nên không thể định vị.</string>
+    <string name="err_location_unavailable">Không lấy được vị trí. Hãy bật GPS và thử lại.</string>
+    <string name="err_no_branch">Không tìm thấy chi nhánh nào.</string>
+</resources>

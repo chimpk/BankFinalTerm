@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_create_customer">Tạo khách hàng mới</string>
+    <string name="title_customer_detail">Hồ sơ khách hàng</string>
+    <string name="title_open_account">Mở tài khoản</string>
+    <string name="create_customer_hint">Tạo hồ sơ, tài khoản đăng nhập và tài khoản thanh toán mặc định. Khách hàng nên đổi mật khẩu sau lần đăng nhập đầu.</string>
+    <string name="hint_search_customer">Tìm theo tên, tên đăng nhập, số điện thoại</string>
+    <string name="hint_username_new">Tên đăng nhập (chữ thường, không dấu)</string>
+    <string name="hint_initial_password">Mật khẩu ban đầu (tối thiểu 6 ký tự)</string>
+    <string name="no_customers">Không có khách hàng phù hợp.</string>
+    <string name="customer_sub">@%1$s • %2$s</string>
+    <string name="customer_kyc_line">eKYC: %1$s</string>
+    <string name="customer_edit_title">Chỉnh sửa dữ liệu theo yêu cầu khách hàng</string>
+    <string name="confirm_lock">Khách hàng sẽ không thể đăng nhập hoặc giao dịch cho tới khi được mở khóa.</string>
+    <string name="confirm_unlock">Khách hàng sẽ có thể đăng nhập và giao dịch trở lại.</string>
+
+    <string name="open_for_customer">Mở tài khoản cho %1$s</string>
+    <string name="hint_account_type">Loại tài khoản</string>
+    <string name="hint_saving_term">Kỳ hạn (lãi suất theo chính sách)</string>
+    <string name="term_rate_fmt">%1$d tháng • %2$s/năm</string>
+    <string name="no_rate_policy">Chưa có bảng lãi suất. Hãy tạo ở tab Lãi suất trước.</string>
+    <string name="hint_principal">Số tiền vay (₫)</string>
+    <string name="hint_loan_rate">Lãi suất vay (%/năm)</string>
+    <string name="hint_loan_term">Kỳ hạn vay (tháng)</string>
+    <string name="hint_frequency">Chu kỳ trả nợ</string>
+
+    <string name="kyc_queue_title">Hồ sơ eKYC chờ duyệt</string>
+    <string name="kyc_queue_hint">Đối chiếu ảnh với giấy tờ tùy thân của khách trước khi duyệt. Hệ thống chỉ kiểm tra có một khuôn mặt và nụ cười, không so khớp danh tính tự động.</string>
+    <string name="kyc_queue_empty">Không có hồ sơ nào đang chờ.</string>
+    <string name="kyc_item_meta">Người chụp: %1$s • Có khuôn mặt %2$s • Mỉm cười %3$s</string>
+    <string name="kyc_approve_title">Duyệt hồ sơ eKYC</string>
+    <string name="kyc_approve_message">Xác nhận bạn đã đối chiếu ảnh với giấy tờ của khách hàng.</string>
+    <string name="kyc_reject_title">Từ chối hồ sơ eKYC</string>
+    <string name="kyc_reject_reason">Lý do từ chối</string>
+    <string name="kyc_counter_title">Xác minh tại quầy</string>
+    <string name="kyc_counter_message">Chỉ tiếp tục khi bạn đã đối chiếu giấy tờ tùy thân với người trực tiếp có mặt. Ảnh sẽ được lưu và hồ sơ được đánh dấu Đã xác minh.</string>
+    <string name="kyc_note_counter">Nhân viên xác minh trực tiếp tại quầy</string>
+
+    <string name="rates_hint">Chạm vào một kỳ hạn để chỉnh lãi suất theo chính sách của ngân hàng.</string>
+    <string name="rates_empty">Chưa có bảng lãi suất tiết kiệm.</string>
+    <string name="edit_rate_title">Lãi suất kỳ hạn %1$d tháng</string>
+    <string name="hint_rate_percent">Lãi suất (%/năm)</string>
+    <string name="apply_to_existing">Áp dụng cho các sổ tiết kiệm đang mở cùng kỳ hạn</string>
+
+    <string name="msg_customer_created">Đã tạo khách hàng và tài khoản thanh toán mặc định.</string>
+    <string name="msg_customer_updated">Đã cập nhật dữ liệu khách hàng.</string>
+    <string name="msg_status_changed">Đã đổi trạng thái tài khoản đăng nhập.</string>
+    <string name="msg_account_opened">Đã mở tài khoản.</string>
+    <string name="msg_kyc_approved">Đã duyệt hồ sơ eKYC.</string>
+    <string name="msg_kyc_rejected">Đã từ chối hồ sơ eKYC.</string>
+    <string name="msg_rates_created">Đã tạo bảng lãi suất mẫu.</string>
+    <string name="msg_rate_updated">Đã cập nhật lãi suất.</string>
+    <string name="msg_rate_updated_with_accounts">Đã cập nhật lãi suất và áp dụng cho các sổ tiết kiệm cùng kỳ hạn.</string>
+</resources>

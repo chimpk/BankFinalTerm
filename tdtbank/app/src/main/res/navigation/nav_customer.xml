@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_customer"
+    app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.HomeFragment" android:label="@string/nav_home" />
+    <fragment android:id="@+id/accountDetailFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.AccountDetailFragment" android:label="@string/title_account_detail" />
+    <fragment android:id="@+id/transferFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.TransferFragment" android:label="@string/nav_transfer" />
+    <fragment android:id="@+id/cashFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.CashFragment" android:label="@string/title_cash" />
+    <fragment android:id="@+id/utilitiesFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.UtilitiesFragment" android:label="@string/nav_utilities" />
+    <fragment android:id="@+id/utilityPayFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.UtilityPayFragment" android:label="@string/title_utility_pay" />
+    <fragment android:id="@+id/historyFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.HistoryFragment" android:label="@string/title_history" />
+    <fragment android:id="@+id/mortgageScheduleFragment" android:name="vn.edu.tdtu.tdtbank.ui.customer.MortgageScheduleFragment" android:label="@string/title_schedule" />
+    <fragment android:id="@+id/branchMapFragment" android:name="vn.edu.tdtu.tdtbank.ui.map.BranchMapFragment" android:label="@string/nav_map" />
+    <fragment android:id="@+id/chatFragment" android:name="vn.edu.tdtu.tdtbank.ui.chat.ChatFragment" android:label="@string/nav_chat" />
+    <fragment android:id="@+id/profileFragment" android:name="vn.edu.tdtu.tdtbank.ui.profile.ProfileFragment" android:label="@string/nav_profile" />
+</navigation>

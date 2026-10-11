@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Trang chủ -->
+    <string name="home_greeting">Xin chào, %1$s</string>
+    <string name="home_accounts">Tài khoản của bạn</string>
+    <string name="home_no_accounts">Bạn chưa có tài khoản nào. Hãy liên hệ nhân viên ngân hàng.</string>
+    <string name="kyc_banner_none">Hoàn tất eKYC để thực hiện giao dịch giá trị cao (từ 10.000.000 ₫).</string>
+    <string name="kyc_banner_pending">Hồ sơ eKYC của bạn đang chờ nhân viên duyệt.</string>
+    <string name="kyc_banner_rejected">Hồ sơ eKYC bị từ chối. Vui lòng chụp lại.</string>
+    <string name="kyc_banner_action">Mở hồ sơ eKYC</string>
+
+    <!-- Tài khoản -->
+    <string name="title_account_detail">Chi tiết tài khoản</string>
+    <string name="checking_extra">Dùng cho giao dịch hằng ngày</string>
+    <string name="saving_extra">Lãi suất %1$s/năm • Lợi nhuận mỗi tháng %2$s</string>
+    <string name="mortgage_extra">Phải trả %1$s %2$s</string>
+    <string name="per_month">mỗi tháng</string>
+    <string name="per_two_weeks">mỗi hai tuần</string>
+    <string name="row_format">%1$s: %2$s</string>
+    <string name="row_status">Trạng thái</string>
+    <string name="row_term">Kỳ hạn</string>
+    <string name="row_rate">Lãi suất</string>
+    <string name="row_monthly_profit">Lợi nhuận mỗi tháng</string>
+    <string name="row_maturity_profit">Tổng lãi khi đáo hạn</string>
+    <string name="row_start_date">Ngày bắt đầu</string>
+    <string name="row_principal">Số tiền vay ban đầu</string>
+    <string name="row_frequency">Chu kỳ trả nợ</string>
+    <string name="row_installment">Số tiền mỗi kỳ</string>
+    <string name="row_next_due">Kỳ trả tiếp theo</string>
+    <string name="paid_off">Đã tất toán</string>
+    <string name="freq_monthly">Hằng tháng</string>
+    <string name="freq_biweekly">Mỗi hai tuần</string>
+    <string name="months_fmt">%1$d tháng</string>
+    <string name="no_transactions">Chưa có giao dịch.</string>
+    <string name="pick_source_account">Chọn tài khoản thanh toán để trả nợ</string>
+    <string name="account_pick_label">%1$s • %2$s • %3$s</string>
+
+    <!-- Lịch trả nợ -->
+    <string name="title_schedule">Lịch trả nợ</string>
+    <string name="schedule_note">Lịch tính theo phương pháp niên kim (số tiền mỗi kỳ cố định). Con số mang tính tham khảo theo công thức, không phải hợp đồng tín dụng thật.</string>
+    <string name="installment_title">Kỳ %1$d • %2$s</string>
+    <string name="installment_detail">Gốc %1$s • Lãi %2$s • Dư nợ sau kỳ %3$s</string>
+    <string name="installment_paid">Đã trả</string>
+    <string name="installment_due">Chưa trả</string>
+
+    <!-- Chuyển tiền -->
+    <string name="transfer_internal">Trong TDT Bank</string>
+    <string name="transfer_interbank">Ngân hàng khác</string>
+    <string name="hint_source_account">Tài khoản nguồn</string>
+    <string name="hint_bank">Ngân hàng nhận (liên kết mô phỏng)</string>
+    <string name="hint_recipient_account">Số tài khoản người nhận</string>
+    <string name="hint_recipient_name">Tên người nhận</string>
+    <string name="hint_amount">Số tiền (₫)</string>
+    <string name="hint_note">Nội dung</string>
+    <string name="fee_internal">Miễn phí chuyển khoản nội bộ.</string>
+    <string name="fee_interbank">Phí chuyển liên ngân hàng: %1$s. Ngân hàng nhận là liên kết MÔ PHỎNG, không có tiền thật chuyển đi.</string>
+    <string name="default_transfer_note">Chuyển tiền</string>
+
+    <!-- Nạp / rút -->
+    <string name="title_cash">Nạp / rút tiền</string>
+    <string name="cash_deposit_heading">Nạp tiền vào tài khoản</string>
+    <string name="cash_withdraw_heading">Rút tiền từ tài khoản</string>
+    <string name="hint_account">Tài khoản</string>
+    <string name="hint_gateway">Cổng thanh toán</string>
+    <string name="gateway_sandbox">Cổng SANDBOX (mô phỏng)</string>
+    <string name="gateway_vnpay">VNPay (sandbox)</string>
+    <string name="gateway_note_sandbox">Chưa cấu hình VNPay nên dùng cổng SANDBOX mô phỏng: không có tiền thật được thu.</string>
+    <string name="gateway_note_vnpay">VNPay sandbox đã được cấu hình: bạn sẽ được chuyển sang trang thanh toán thử nghiệm của VNPay.</string>
+    <string name="gateway_sandbox_confirm">Đây là cổng thanh toán giả lập để minh họa luồng nạp tiền. Không có giao dịch thật nào được thực hiện. Tiếp tục?</string>
+    <string name="default_deposit_note">Nạp tiền qua cổng thanh toán</string>
+    <string name="default_withdraw_note">Rút tiền</string>
+
+    <!-- Tiện ích -->
+    <string name="utilities_sub">Chọn dịch vụ bạn muốn thanh toán</string>
+    <string name="title_utility_pay">Thanh toán dịch vụ</string>
+    <string name="util_electricity">Tiền điện</string>
+    <string name="util_water">Tiền nước</string>
+    <string name="util_phone">Nạp điện thoại</string>
+    <string name="util_flight">Vé máy bay</string>
+    <string name="util_movie">Vé xem phim</string>
+    <string name="util_hotel">Đặt phòng khách sạn</string>
+    <string name="util_ecommerce">Thanh toán đơn hàng TMĐT</string>
+    <string name="utility_sample_note">Danh mục dịch vụ là DỮ LIỆU MẪU, chưa kết nối nhà cung cấp thật. Tiền vẫn được trừ từ tài khoản trong ứng dụng.</string>
+    <string name="hint_pay_from">Thanh toán từ tài khoản</string>
+    <string name="hint_provider">Nhà cung cấp</string>
+    <string name="hint_customer_code">Mã khách hàng</string>
+    <string name="hint_phone_number">Số điện thoại cần nạp</string>
+    <string name="hint_topup_amount">Mệnh giá</string>
+    <string name="hint_item">Chọn dịch vụ</string>
+
+    <!-- Lịch sử -->
+    <string name="title_history">Lịch sử</string>
+    <string name="month_fmt">Tháng %1$d/%2$d</string>
+    <string name="history_summary">Tiền vào %1$s • Tiền ra %2$s</string>
+
+    <!-- Bản đồ -->
+    <string name="map_my_location">Vị trí của tôi</string>
+    <string name="map_nearest">Đường đi bộ tới chi nhánh gần nhất</string>
+    <string name="map_sample_banner">Dữ liệu chi nhánh MẪU (hư cấu) vì Firestore chưa có chi nhánh nào.</string>
+    <string name="you_are_here">Bạn ở đây</string>
+    <string name="route_info">%1$s\nĐi bộ %2$s, khoảng %3$d phút</string>
+    <string name="route_info_straight">%1$s\nKhông tải được đường đi bộ. Khoảng cách đường chim bay: %2$s</string>
+</resources>

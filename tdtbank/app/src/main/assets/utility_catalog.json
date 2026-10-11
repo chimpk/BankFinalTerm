@@ -1,0 +1,31 @@
+{
+  "_note": "DANH MỤC MẪU phục vụ demo. Không kết nối nhà cung cấp thật.",
+  "providers": {
+    "ELECTRICITY": ["EVN TP.HCM", "EVN Hà Nội", "EVN Miền Trung"],
+    "WATER": ["SAWACO TP.HCM", "HAWACO Hà Nội", "Cấp nước Đà Nẵng"],
+    "PHONE_TOPUP": ["Viettel", "Mobifone", "Vinaphone"]
+  },
+  "topupAmounts": [10000, 20000, 50000, 100000, 200000, 500000],
+  "items": {
+    "FLIGHT": [
+      {"name": "SGN → HAN • Sample Air • 08:00", "price": 1890000},
+      {"name": "SGN → DAD • Sample Air • 10:30", "price": 1250000},
+      {"name": "HAN → SGN • Sample Jet • 19:15", "price": 2050000}
+    ],
+    "MOVIE": [
+      {"name": "Vé phim 2D • Rạp Mẫu Q7 • 19:30", "price": 95000},
+      {"name": "Vé phim 3D • Rạp Mẫu Q1 • 20:15", "price": 135000},
+      {"name": "Combo 2 vé + bắp nước • Rạp Mẫu Thủ Đức", "price": 260000}
+    ],
+    "HOTEL": [
+      {"name": "Phòng Standard • Khách sạn Mẫu Q1 • 1 đêm", "price": 850000},
+      {"name": "Phòng Deluxe • Khách sạn Mẫu Đà Nẵng • 1 đêm", "price": 1450000},
+      {"name": "Phòng Superior • Khách sạn Mẫu Hà Nội • 1 đêm", "price": 1100000}
+    ],
+    "ECOMMERCE": [
+      {"name": "Đơn hàng #A1001 • Tai nghe Bluetooth (sàn Mẫu)", "price": 390000},
+      {"name": "Đơn hàng #A1002 • Sách lập trình Android (sàn Mẫu)", "price": 185000},
+      {"name": "Đơn hàng #A1003 • Bàn phím cơ (sàn Mẫu)", "price": 720000}
+    ]
+  }
+}

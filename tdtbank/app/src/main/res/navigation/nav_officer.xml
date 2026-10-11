@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_officer"
+    app:startDestination="@id/customerListFragment">
+
+    <fragment android:id="@+id/customerListFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.CustomerListFragment" android:label="@string/nav_customers" />
+    <fragment android:id="@+id/customerCreateFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.CustomerCreateFragment" android:label="@string/title_create_customer" />
+    <fragment android:id="@+id/customerDetailFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.CustomerDetailFragment" android:label="@string/title_customer_detail" />
+    <fragment android:id="@+id/openAccountFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.OpenAccountFragment" android:label="@string/title_open_account" />
+    <fragment android:id="@+id/kycQueueFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.KycQueueFragment" android:label="@string/nav_kyc" />
+    <fragment android:id="@+id/ratesFragment" android:name="vn.edu.tdtu.tdtbank.ui.officer.RatesFragment" android:label="@string/nav_rates" />
+    <fragment android:id="@+id/profileFragment" android:name="vn.edu.tdtu.tdtbank.ui.profile.ProfileFragment" android:label="@string/nav_profile" />
+</navigation>

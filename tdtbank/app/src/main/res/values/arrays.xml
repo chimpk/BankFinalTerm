@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ngân hàng liên kết MÔ PHỎNG cho chuyển khoản liên ngân hàng -->
+    <string-array name="partner_banks">
+        <item>Vietcombank</item>
+        <item>BIDV</item>
+        <item>OCB</item>
+        <item>Techcombank</item>
+        <item>MB Bank</item>
+        <item>ACB</item>
+        <item>VPBank</item>
+        <item>Sacombank</item>
+    </string-array>
+</resources>

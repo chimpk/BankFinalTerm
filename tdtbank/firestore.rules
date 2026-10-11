@@ -1,0 +1,276 @@
+rules_version = '2';
+
+// =====================================================================================
+// TDT Bank – Firestore Security Rules (gói Spark, KHÔNG có Cloud Functions)
+//
+// Vì không có máy chủ riêng, lớp này là "người gác cổng" cuối cùng:
+//  - Vai trò (CUSTOMER / OFFICER) và trạng thái (ACTIVE / LOCKED) lấy từ users/{uid}.
+//  - Số dư chỉ được đổi khi cùng một batch tạo ra bản ghi giao dịch KHỚP (getAfter/existsAfter),
+//    đúng chủ sở hữu, đủ số dư, đúng số tiền + phí. Bản ghi giao dịch là bất biến.
+//  - Giao dịch >= 10.000.000 phải có faceVerified và hồ sơ eKYC đã VERIFIED.
+//
+// GIỚI HẠN ĐÃ BIẾT (xem docs/limitations.md): rules không thể xác minh OTP thật, không xác minh thanh toán
+// của cổng bên ngoài và không tính hạn mức ngày. Các điểm đó cần máy chủ (Cloud Functions - gói Blaze).
+// File này CHƯA được chạy với Firebase Emulator trong môi trường phát triển của bản giao này.
+// =====================================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Hàm dùng chung ----------
+    function signedIn() { return request.auth != null; }
+    function uid() { return request.auth.uid; }
+    function myDoc() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function active() { return signedIn() && myDoc().status == 'ACTIVE'; }
+    function isOfficer() { return active() && myDoc().role == 'OFFICER'; }
+    function isCustomer() { return active() && myDoc().role == 'CUSTOMER'; }
+
+    function accountDoc(n) { return get(/databases/$(database)/documents/accounts/$(n)).data; }
+    function txPath(id) { return /databases/$(database)/documents/transactions/$(id); }
+    function accountPath(n) { return /databases/$(database)/documents/accounts/$(n); }
+
+    // ---------- users ----------
+    match /users/{userId} {
+      allow read: if signedIn() && (uid() == userId || isOfficer());
+
+      // Nhân viên tạo hồ sơ KHÁCH HÀNG. Hồ sơ nhân viên chỉ tạo bằng scripts/seed-demo-data.js (Admin SDK).
+      allow create: if isOfficer()
+        && request.resource.data.keys().hasOnly(['uid', 'username', 'role', 'fullName', 'phone', 'contactEmail',
+             'nationalId', 'address', 'dateOfBirth', 'status', 'kycStatus', 'createdAt', 'createdBy'])
+        && request.resource.data.uid == userId
+        && request.resource.data.role == 'CUSTOMER'
+        && request.resource.data.status == 'ACTIVE'
+        && request.resource.data.kycStatus == 'NONE'
+        && request.resource.data.createdBy == uid()
+        && request.resource.data.username is string
+        && request.resource.data.username.matches('^[a-z][a-z0-9._-]{2,31}$')
+        && request.resource.data.fullName is string
+        && request.resource.data.fullName.size() >= 2;
+
+      allow update:
+        // (1) Nhân viên sửa dữ liệu khách hàng theo yêu cầu, khóa/mở khóa, duyệt eKYC.
+        if (isOfficer() && resource.data.role == 'CUSTOMER'
+              && request.resource.data.diff(resource.data).affectedKeys()
+                   .hasOnly(['fullName', 'phone', 'contactEmail', 'address', 'nationalId', 'dateOfBirth',
+                             'status', 'kycStatus']))
+        // (2) Người dùng tự sửa thông tin liên hệ của mình.
+        || (active() && uid() == userId
+              && request.resource.data.diff(resource.data).affectedKeys()
+                   .hasOnly(['phone', 'contactEmail', 'address']))
+        // (3) Khách hàng nộp hồ sơ eKYC: kycStatus NONE/REJECTED -> PENDING.
+        || (isCustomer() && uid() == userId
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['kycStatus'])
+              && request.resource.data.kycStatus == 'PENDING'
+              && resource.data.kycStatus in ['NONE', 'REJECTED']);
+
+      allow delete: if false;
+    }
+
+    // ---------- kyc ----------
+    match /kyc/{userId} {
+      function validKyc() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['uid', 'fullName', 'faceImageBase64', 'status', 'capturedBy', 'capturedByRole',
+                 'faceDetected', 'livenessPassed', 'reviewedBy', 'note', 'updatedAt'])
+          && d.uid == userId
+          && d.faceImageBase64 is string && d.faceImageBase64.size() < 300000
+          && d.status in ['PENDING', 'VERIFIED', 'REJECTED'];
+      }
+
+      allow read: if signedIn() && (uid() == userId || isOfficer());
+
+      allow create, update:
+        if (isCustomer() && uid() == userId && validKyc()
+              && request.resource.data.status == 'PENDING'
+              && request.resource.data.capturedBy == uid()
+              && request.resource.data.capturedByRole == 'CUSTOMER'
+              && myDoc().kycStatus in ['NONE', 'REJECTED'])
+        || (isOfficer() && validKyc()
+              && (request.resource.data.get('reviewedBy', null) == null
+                  || request.resource.data.reviewedBy == uid()));
+
+      allow delete: if false;
+    }
+
+    // ---------- accountDirectory (tra tên chủ tài khoản khi chuyển nội bộ) ----------
+    match /accountDirectory/{accountNumber} {
+      allow read: if active();
+      allow create: if isOfficer()
+        && accountNumber.matches('^[0-9]{10}$')
+        && request.resource.data.keys().hasOnly(['accountNumber', 'ownerUid', 'ownerName', 'type'])
+        && request.resource.data.accountNumber == accountNumber;
+      allow update, delete: if false;
+    }
+
+    // ---------- accounts ----------
+    match /accounts/{accountId} {
+      function validNewAccount() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['accountNumber', 'ownerUid', 'ownerName', 'type', 'status', 'balance',
+                 'interestRate', 'termMonths', 'principal', 'paymentFrequency', 'startDate', 'lastTxId', 'createdAt'])
+          && d.accountNumber == accountId
+          && accountId.matches('^[0-9]{10}$')
+          && d.status == 'ACTIVE'
+          && exists(/databases/$(database)/documents/users/$(d.ownerUid))
+          && existsAfter(/databases/$(database)/documents/accountDirectory/$(accountId))
+          && (
+               (d.type == 'CHECKING' && d.balance == 0)
+            || (d.type == 'SAVING' && d.balance == 0 && d.termMonths is int && d.termMonths > 0
+                  && d.interestRate >= 0 && d.interestRate <= 20)
+            || (d.type == 'MORTGAGE' && d.principal is int && d.principal > 0 && d.balance == d.principal
+                  && d.termMonths is int && d.termMonths > 0 && d.interestRate >= 0 && d.interestRate <= 30
+                  && d.paymentFrequency in ['MONTHLY', 'BIWEEKLY'])
+             );
+      }
+
+      // Nhân viên chỉ được đổi lãi suất / trạng thái, KHÔNG được đổi số dư.
+      function officerEdit() {
+        return isOfficer()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['interestRate', 'status'])
+          && request.resource.data.interestRate >= 0 && request.resource.data.interestRate <= 30;
+      }
+
+      function debitOk(d, old, t) {
+        return t.ownerUid == uid() && old.ownerUid == uid()
+          && t.fromAccountId == old.accountNumber
+          && old.type != 'MORTGAGE'
+          && t.type in ['WITHDRAW', 'TRANSFER_INTERNAL', 'TRANSFER_INTERBANK', 'UTILITY_PAYMENT', 'MORTGAGE_PAYMENT']
+          && d.balance == old.balance - (t.amount + t.fee)
+          && d.balance >= 0;
+      }
+
+      // Phía CỘNG tiền (chuyển nội bộ, trả nợ) chỉ hợp lệ khi tài khoản nguồn cũng được cập nhật trong CÙNG batch
+      // với đúng txId này (lastTxId khớp) - phía TRỪ đã được debitOk kiểm tra. Nếu thiếu, người dùng có thể "đúc" tiền.
+      function sourceDebitedInSameBatch(d, t) {
+        return getAfter(accountPath(t.fromAccountId)).data.lastTxId == d.lastTxId;
+      }
+
+      function creditOk(d, old, t) {
+        return t.ownerUid == uid() && t.toAccountId == old.accountNumber
+          && (
+               (t.type == 'DEPOSIT' && old.ownerUid == uid() && old.type != 'MORTGAGE'
+                  && d.balance == old.balance + t.amount)
+            || (t.type == 'TRANSFER_INTERNAL' && old.type != 'MORTGAGE'
+                  && d.balance == old.balance + t.amount
+                  && sourceDebitedInSameBatch(d, t))
+            || (t.type == 'MORTGAGE_PAYMENT' && old.ownerUid == uid() && old.type == 'MORTGAGE'
+                  && d.balance == old.balance - t.principalPortion && d.balance >= 0
+                  && sourceDebitedInSameBatch(d, t))
+             );
+      }
+
+      // Số dư chỉ đổi khi batch đồng thời TẠO một giao dịch mới (chưa tồn tại trước) khớp số tiền.
+      function backedUpdate() {
+        let d = request.resource.data;
+        let old = resource.data;
+        return active()
+          && d.diff(old).affectedKeys().hasOnly(['balance', 'lastTxId'])
+          && d.lastTxId is string
+          && !exists(txPath(d.lastTxId))
+          && existsAfter(txPath(d.lastTxId))
+          && (
+               debitOk(d, old, getAfter(txPath(d.lastTxId)).data)
+            || creditOk(d, old, getAfter(txPath(d.lastTxId)).data)
+             );
+      }
+
+      allow read: if signedIn() && (resource.data.ownerUid == uid() || isOfficer());
+      allow create: if isOfficer() && validNewAccount();
+      allow update: if officerEdit() || backedUpdate();
+      allow delete: if false;
+    }
+
+    // ---------- transactions (bất biến) ----------
+    match /transactions/{txId} {
+      function feeFor(type) { return type == 'TRANSFER_INTERBANK' ? 7700 : 0; }
+
+      function fromOk(d) {
+        return accountDoc(d.fromAccountId).ownerUid == uid()
+          && accountDoc(d.fromAccountId).status == 'ACTIVE'
+          && accountDoc(d.fromAccountId).type != 'MORTGAGE'
+          && accountDoc(d.fromAccountId).balance >= d.amount + d.fee
+          && d.accountIds == [d.fromAccountId]
+          && d.participantUids == [uid()];
+      }
+
+      function typeOk(d) {
+        return (d.type == 'DEPOSIT' && d.fromAccountId == 'EXTERNAL'
+                  && accountDoc(d.toAccountId).ownerUid == uid()
+                  && accountDoc(d.toAccountId).type != 'MORTGAGE'
+                  && d.gateway in ['SANDBOX', 'VNPAY']
+                  && d.accountIds == [d.toAccountId]
+                  && d.participantUids == [uid()])
+          || (d.type == 'WITHDRAW' && d.toAccountId == 'CASH' && fromOk(d))
+          || (d.type == 'TRANSFER_INTERBANK' && d.toAccountId == 'INTERBANK' && fromOk(d))
+          || (d.type == 'UTILITY_PAYMENT' && d.toAccountId == 'UTILITY' && fromOk(d))
+          || (d.type == 'TRANSFER_INTERNAL'
+                  && accountDoc(d.fromAccountId).ownerUid == uid()
+                  && accountDoc(d.fromAccountId).status == 'ACTIVE'
+                  && accountDoc(d.fromAccountId).type != 'MORTGAGE'
+                  && accountDoc(d.fromAccountId).balance >= d.amount + d.fee
+                  && d.toAccountId != d.fromAccountId
+                  && accountDoc(d.toAccountId).type != 'MORTGAGE'
+                  && d.accountIds == [d.fromAccountId, d.toAccountId]
+                  && d.participantUids.hasAll([uid(), accountDoc(d.toAccountId).ownerUid])
+                  && d.participantUids.hasOnly([uid(), accountDoc(d.toAccountId).ownerUid]))
+          || (d.type == 'MORTGAGE_PAYMENT'
+                  && accountDoc(d.fromAccountId).ownerUid == uid()
+                  && accountDoc(d.fromAccountId).status == 'ACTIVE'
+                  && accountDoc(d.fromAccountId).type == 'CHECKING'
+                  && accountDoc(d.fromAccountId).balance >= d.amount + d.fee
+                  && accountDoc(d.toAccountId).ownerUid == uid()
+                  && accountDoc(d.toAccountId).type == 'MORTGAGE'
+                  && d.principalPortion >= 0 && d.principalPortion <= d.amount
+                  && d.principalPortion <= accountDoc(d.toAccountId).balance
+                  && d.accountIds == [d.fromAccountId, d.toAccountId]
+                  && d.participantUids == [uid()]);
+      }
+
+      function validTx() {
+        let d = request.resource.data;
+        return active()
+          && d.keys().hasOnly(['type', 'ownerUid', 'fromAccountId', 'toAccountId', 'participantUids', 'accountIds',
+                 'amount', 'fee', 'principalPortion', 'description', 'category', 'reference', 'counterpartyBank',
+                 'counterpartyName', 'gateway', 'status', 'otpVerified', 'faceVerified', 'createdAt'])
+          && d.ownerUid == uid()
+          && d.status == 'COMPLETED'
+          && d.otpVerified == true
+          && d.amount is int && d.amount >= 10000 && d.amount <= 200000000
+          && d.fee is int && d.fee == feeFor(d.type)
+          && d.principalPortion is int
+          && d.createdAt == request.time
+          // Giao dịch giá trị cao: bắt buộc xác minh khuôn mặt và eKYC đã được nhân viên duyệt.
+          && (d.amount < 10000000 || (d.faceVerified == true && myDoc().kycStatus == 'VERIFIED'))
+          && typeOk(d);
+      }
+
+      allow read: if signedIn() && (uid() in resource.data.participantUids || isOfficer());
+      allow create: if validTx();
+      allow update, delete: if false;
+    }
+
+    // ---------- chính sách lãi suất tiết kiệm ----------
+    match /savingRatePolicies/{term} {
+      allow read: if active();
+      allow create, update: if isOfficer()
+        && request.resource.data.keys().hasOnly(['termMonths', 'annualRate', 'updatedBy', 'updatedAt'])
+        && term.matches('^[0-9]{1,3}$')
+        && request.resource.data.termMonths == int(term)
+        && request.resource.data.annualRate >= 0 && request.resource.data.annualRate <= 20
+        && request.resource.data.updatedBy == uid();
+      allow delete: if false;
+    }
+
+    // ---------- chi nhánh ----------
+    match /branches/{branchId} {
+      allow read: if active();
+      allow create, update: if isOfficer()
+        && request.resource.data.keys().hasOnly(['name', 'address', 'phone', 'lat', 'lng']);
+      allow delete: if isOfficer();
+    }
+
+    // Mặc định từ chối mọi thứ còn lại.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

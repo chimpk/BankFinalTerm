@@ -1,0 +1,5 @@
+package vn.edu.tdtu.tdtbank.model;
+
+public enum TxType {
+    DEPOSIT, WITHDRAW, TRANSFER_INTERNAL, TRANSFER_INTERBANK, UTILITY_PAYMENT, MORTGAGE_PAYMENT
+}

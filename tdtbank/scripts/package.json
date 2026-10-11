@@ -1,0 +1,8 @@
+{
+  "name": "tdtbank-seed",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nạp dữ liệu demo cho TDT Bank (Auth + Firestore) bằng Firebase Admin SDK",
+  "scripts": { "seed": "node seed-demo-data.js" },
+  "dependencies": { "firebase-admin": "^12.0.0" }
+}

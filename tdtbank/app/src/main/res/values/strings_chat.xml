@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_hint">Hỏi trợ lý…</string>
+    <string name="chip_balance">Số dư của tôi</string>
+    <string name="chip_month">Giao dịch tháng này</string>
+    <string name="chip_electric">Thanh toán tiền điện</string>
+    <string name="chip_branch">Chi nhánh gần nhất</string>
+
+    <string name="chat_welcome">Xin chào! Tôi là trợ lý TDT Bank. Bạn có thể hỏi về số dư, giao dịch trong tháng, thanh toán hóa đơn, nạp điện thoại, chuyển tiền hoặc chi nhánh gần nhất.</string>
+    <string name="chat_greeting">Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?</string>
+    <string name="chat_help">Tôi có thể: xem số dư, tổng hợp giao dịch tháng này, dẫn bạn tới màn hình chuyển tiền, trả tiền điện/nước, nạp điện thoại, mua vé, đặt phòng, tìm chi nhánh gần nhất.</string>
+    <string name="chat_transfer">Bạn có thể chuyển tiền trong TDT Bank hoặc sang ngân hàng khác. Mọi giao dịch đều cần OTP.</string>
+    <string name="chat_electricity">Bạn có thể thanh toán tiền điện bằng mã khách hàng ở màn hình sau.</string>
+    <string name="chat_water">Bạn có thể thanh toán tiền nước bằng mã khách hàng ở màn hình sau.</string>
+    <string name="chat_topup">Nạp tiền điện thoại: chọn nhà mạng, nhập số và chọn mệnh giá.</string>
+    <string name="chat_flight">Chọn chuyến bay trong danh mục mẫu để thanh toán vé.</string>
+    <string name="chat_movie">Chọn suất chiếu trong danh mục mẫu để thanh toán vé xem phim.</string>
+    <string name="chat_hotel">Chọn phòng khách sạn trong danh mục mẫu để đặt và thanh toán.</string>
+    <string name="chat_shopping">Chọn đơn hàng mẫu để thanh toán từ tài khoản của bạn.</string>
+    <string name="chat_branch">Tôi sẽ mở bản đồ để bạn xem chi nhánh và đường đi bộ ngắn nhất.</string>
+    <string name="chat_saving">Lãi suất và lợi nhuận mỗi tháng của sổ tiết kiệm được hiển thị trong chi tiết từng tài khoản tiết kiệm.</string>
+    <string name="chat_mortgage">Số tiền phải trả mỗi tháng hoặc mỗi hai tuần của khoản vay nằm trong chi tiết tài khoản vay.</string>
+    <string name="chat_deposit">Bạn có thể nạp tiền vào tài khoản qua cổng thanh toán.</string>
+    <string name="chat_withdraw">Bạn có thể rút tiền từ tài khoản thanh toán hoặc tiết kiệm.</string>
+    <string name="chat_kyc">Hoàn tất eKYC trong Hồ sơ để thực hiện giao dịch giá trị cao.</string>
+    <string name="chat_security">Mọi giao dịch cần mã OTP 6 số. Giao dịch từ 10.000.000 ₫ còn cần xác minh khuôn mặt. Không bao giờ chia sẻ OTP với bất kỳ ai, kể cả nhân viên ngân hàng.</string>
+    <string name="chat_balance_header">Số dư hiện tại của bạn:</string>
+    <string name="chat_month_summary">Tháng này bạn có %1$d giao dịch. Tiền vào: %2$s. Tiền ra: %3$s.</string>
+    <string name="chat_unknown">Tôi chưa hiểu câu hỏi này. Hãy thử: "số dư", "giao dịch tháng này", "trả tiền điện", "nạp điện thoại" hoặc "chi nhánh gần nhất".</string>
+    <string name="chat_ai_unavailable">Trợ lý AI tạm thời không phản hồi. Hãy thử lại sau.</string>
+
+    <string name="action_open_transfer">Mở chuyển tiền</string>
+    <string name="action_pay_electricity">Trả tiền điện</string>
+    <string name="action_pay_water">Trả tiền nước</string>
+    <string name="action_topup">Nạp điện thoại</string>
+    <string name="action_buy_flight">Mua vé máy bay</string>
+    <string name="action_buy_movie">Mua vé xem phim</string>
+    <string name="action_book_hotel">Đặt phòng</string>
+    <string name="action_pay_order">Thanh toán đơn hàng</string>
+    <string name="action_open_map">Mở bản đồ</string>
+    <string name="action_open_accounts">Xem tài khoản</string>
+    <string name="action_open_history">Xem lịch sử</string>
+    <string name="action_open_profile">Mở hồ sơ</string>
+</resources>
