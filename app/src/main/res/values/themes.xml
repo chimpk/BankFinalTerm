@@ -1,9 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.FinalTerm" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TdtBank" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">#D3E4FF</item>
+        <item name="colorOnPrimaryContainer">#001C38</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:colorBackground">@color/brand_surface</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
-    <style name="Theme.FinalTerm" parent="Base.Theme.FinalTerm" />
+    <style name="TextAppearance.TdtBank.Amount" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
 </resources>

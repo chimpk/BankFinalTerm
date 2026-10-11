@@ -1,15 +1,24 @@
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.idea/
+.vscode/
 .DS_Store
-/build
+build/
 /captures
 .externalNativeBuild
 .cxx
 local.properties
+
+# Google Services (DO NOT LEAK)
+google-services.json
+# Khóa service account dùng cho scripts/seed-demo-data.js
+scripts/serviceAccountKey.json
+scripts/node_modules/
+
+# Build outputs
+.build-outputs/
+*.apk
+*.aab
+*.jks
+*.keystore
